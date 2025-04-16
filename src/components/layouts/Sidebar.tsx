@@ -1,186 +1,224 @@
 import {
   Box,
   Flex,
-  Text,
+  VStack,
   HStack,
+  Text,
   Icon,
   Badge,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  Divider,
-  Container,
   Button,
+  Divider,
   useColorModeValue,
   Tooltip,
-  VStack,
   Progress,
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import {
   FaCalendarCheck,
   FaFutbol,
   FaTrophy,
   FaChartLine,
-  FaBullhorn,
-  FaArrowRight,
   FaClock,
-} from 'react-icons/fa';
+} from "react-icons/fa";
 
-// Dados de exemplo - substituir por dados reais
-const nextMatches = [
-  { 
-    time1: 'Time A', 
-    time2: 'Time B', 
-    data: '20/04', 
-    hora: '14:00',
-    campeonato: 'Campeonato Estadual',
-    fase: 'Quartas de Final',
+const Sidebar = () => {
+  const bgColor = useColorModeValue("#1A202C", "#1A202C"); // Fundo principal
+  const cardBg = useColorModeValue("#2D3748", "#2D3748"); // Fundo dos cards
+  const highlightColor = useColorModeValue("#FFD700", "#FFD700"); // Amarelo escuro
+  const textColor = useColorModeValue("white", "white"); // Texto branco
+
+  const nextMatch = {
+    time1: "Time A",
+    time2: "Time B",
+    data: "20/04",
+    hora: "14:00",
+    campeonato: "Campeonato Estadual",
+    fase: "Quartas de Final",
     placar1: 2,
     placar2: 1,
-    status: 'Em Andamento'
-  },
-  { 
-    time1: 'Time C', 
-    time2: 'Time D', 
-    data: '20/04', 
-    hora: '15:30',
-    campeonato: 'Copa do Estado',
-    fase: 'Semifinal',
-    placar1: 0,
-    placar2: 0,
-    status: 'Agendado'
-  },
-];
+    status: "Em Andamento",
+  };
 
-const topPlayers = [
-  { name: 'Jogador 1', goals: 15, assists: 8, team: 'Time A' },
-  { name: 'Jogador 2', goals: 12, assists: 10, team: 'Time B' },
-];
-
-const InfoBar = () => {
-  const bgColor = useColorModeValue('white', 'gray.800');
-  const borderColor = useColorModeValue('gray.200', 'gray.700');
-  const highlightColor = useColorModeValue('brand.50', 'brand.900');
+  const topPlayer = {
+    name: "Jogador 1",
+    goals: 15,
+    assists: 8,
+    team: "Time A",
+  };
 
   return (
     <Box
       w="100%"
       bg={bgColor}
-      borderBottom="1px"
-      borderColor={borderColor}
-      py={2}
-      position="sticky"
-      top="60px"
-      zIndex={2}
-      boxShadow="sm"
+      p={4}
+      borderRadius="md"
+      boxShadow="lg"
+      overflow="hidden"
     >
-      <Container maxW="container.xl">
-        <Flex justify="space-between" align="center" wrap="wrap" gap={4}>
-          {/* Próximo Jogo */}
-          <Box flex="1" minW="300px">
-            <HStack spacing={4} p={2} bg={highlightColor} rounded="md">
-              <Icon as={FaCalendarCheck} color="brand.500" boxSize={5} />
-              <VStack align="start" spacing={0}>
-                <Text fontSize="xs" color="gray.500">{nextMatches[0].campeonato}</Text>
-                <Text fontSize="xs" color="brand.500" fontWeight="bold">{nextMatches[0].fase}</Text>
-                <HStack spacing={2}>
-                  <Text fontWeight="bold">{nextMatches[0].time1}</Text>
-                  <Text color="brand.500" fontWeight="bold">
-                    {nextMatches[0].placar1} - {nextMatches[0].placar2}
-                  </Text>
-                  <Text fontWeight="bold">{nextMatches[0].time2}</Text>
-                </HStack>
-                <HStack spacing={2} fontSize="xs" color="gray.500">
-                  <Icon as={FaClock} />
-                  <Text>{nextMatches[0].data} às {nextMatches[0].hora}</Text>
-                  <Badge colorScheme={nextMatches[0].status === 'Em Andamento' ? 'green' : 'gray'}>
-                    {nextMatches[0].status}
-                  </Badge>
-                </HStack>
-              </VStack>
-            </HStack>
-          </Box>
-
-          <Divider orientation="vertical" h="60px" />
-
-          {/* Artilheiro */}
-          <Box flex="1" minW="250px">
-            <HStack spacing={4} p={2} bg={highlightColor} rounded="md">
-              <Icon as={FaFutbol} color="brand.500" boxSize={5} />
-              <VStack align="start" spacing={0}>
-                <Text fontSize="xs" color="gray.500">Artilheiro</Text>
-                <Text fontWeight="bold">{topPlayers[0].name}</Text>
-                <Text fontSize="xs" color="gray.500">{topPlayers[0].team}</Text>
-                <HStack spacing={4}>
-                  <Text fontSize="sm" color="brand.500">{topPlayers[0].goals} gols</Text>
-                  <Text fontSize="sm" color="gray.500">{topPlayers[0].assists} assistências</Text>
-                </HStack>
-              </VStack>
-            </HStack>
-          </Box>
-
-          <Divider orientation="vertical" h="60px" />
-
-          {/* Estatísticas Rápidas */}
-          <Box flex="1" minW="250px">
-            <HStack spacing={4} p={2} bg={highlightColor} rounded="md">
-              <Icon as={FaChartLine} color="brand.500" boxSize={5} />
-              <VStack align="start" spacing={1} width="100%">
-                <Text fontSize="xs" color="gray.500">Estatísticas da Temporada</Text>
-                <HStack width="100%" justify="space-between">
-                  <Stat size="sm">
-                    <StatLabel fontSize="xs" color="gray.500">Jogos</StatLabel>
-                    <StatNumber>48</StatNumber>
-                    <StatHelpText>Temporada 2024</StatHelpText>
-                  </Stat>
-                  <Stat size="sm">
-                    <StatLabel fontSize="xs" color="gray.500">Gols</StatLabel>
-                    <StatNumber>156</StatNumber>
-                    <StatHelpText>Média: 3.25</StatHelpText>
-                  </Stat>
-                </HStack>
-                <Progress 
-                  value={75} 
-                  size="xs" 
-                  colorScheme="brand" 
-                  width="100%" 
-                  borderRadius="full"
-                />
-              </VStack>
-            </HStack>
-          </Box>
-
-          <Divider orientation="vertical" h="60px" />
-
-          {/* Links Rápidos */}
-          <HStack spacing={2}>
-            <Button
-              as={Link}
-              to="/schedule"
-              size="sm"
-              variant="ghost"
-              colorScheme="brand"
-              leftIcon={<Icon as={FaCalendarCheck} />}
-            >
-              Agenda
-            </Button>
-            <Button
-              as={Link}
-              to="/competitions"
-              size="sm"
-              variant="ghost"
-              colorScheme="brand"
-              leftIcon={<Icon as={FaTrophy} />}
-            >
-              Competições
-            </Button>
+      <Flex wrap="wrap" gap={4} justify="space-between" align="stretch">
+        {/* Próximo Jogo */}
+        <Box
+          bg={cardBg}
+          p={4}
+          borderRadius="md"
+          boxShadow="md"
+          flex="1"
+          minW="300px"
+          _hover={{ bg: highlightColor, color: bgColor }}
+          transition="all 0.3s ease"
+        >
+          <HStack spacing={4}>
+            <Icon as={FaCalendarCheck} boxSize={6} color={highlightColor} />
+            <VStack align="start" spacing={1}>
+              <Text fontSize="sm" color={textColor}>
+                {nextMatch.campeonato}
+              </Text>
+              <Text fontSize="sm" fontWeight="bold" color={highlightColor}>
+                {nextMatch.fase}
+              </Text>
+              <HStack spacing={2}>
+                <Text fontWeight="bold" color={textColor}>
+                  {nextMatch.time1}
+                </Text>
+                <Text color={highlightColor} fontWeight="bold">
+                  {nextMatch.placar1} - {nextMatch.placar2}
+                </Text>
+                <Text fontWeight="bold" color={textColor}>
+                  {nextMatch.time2}
+                </Text>
+              </HStack>
+              <HStack spacing={2} fontSize="sm" color={textColor}>
+                <Icon as={FaClock} />
+                <Text>
+                  {nextMatch.data} às {nextMatch.hora}
+                </Text>
+                <Badge
+                  colorScheme={
+                    nextMatch.status === "Em Andamento" ? "green" : "gray"
+                  }
+                >
+                  {nextMatch.status}
+                </Badge>
+              </HStack>
+            </VStack>
           </HStack>
-        </Flex>
-      </Container>
+        </Box>
+
+        {/* Artilheiro */}
+        <Box
+          bg={cardBg}
+          p={4}
+          borderRadius="md"
+          boxShadow="md"
+          flex="1"
+          minW="300px"
+          _hover={{ bg: highlightColor, color: bgColor }}
+          transition="all 0.3s ease"
+        >
+          <HStack spacing={4}>
+            <Icon as={FaFutbol} boxSize={6} color={highlightColor} />
+            <VStack align="start" spacing={1}>
+              <Text fontSize="sm" color={textColor}>
+                Artilheiro
+              </Text>
+              <Text fontWeight="bold" color={textColor}>
+                {topPlayer.name}
+              </Text>
+              <Text fontSize="sm" color={textColor}>
+                {topPlayer.team}
+              </Text>
+              <HStack spacing={4}>
+                <Text fontSize="sm" color={highlightColor}>
+                  {topPlayer.goals} gols
+                </Text>
+                <Text fontSize="sm" color={textColor}>
+                  {topPlayer.assists} assistências
+                </Text>
+              </HStack>
+            </VStack>
+          </HStack>
+        </Box>
+
+        {/* Estatísticas Rápidas */}
+        <Box
+          bg={cardBg}
+          p={4}
+          borderRadius="md"
+          boxShadow="md"
+          flex="1"
+          minW="300px"
+          _hover={{ bg: highlightColor, color: bgColor }}
+          transition="all 0.3s ease"
+        >
+          <HStack spacing={4}>
+            <Icon as={FaChartLine} boxSize={6} color={highlightColor} />
+            <VStack align="start" spacing={1} width="100%">
+              <Text fontSize="sm" color={textColor}>
+                Estatísticas da Temporada
+              </Text>
+              <HStack width="100%" justify="space-between">
+                <VStack align="start" spacing={0}>
+                  <Text fontSize="xs" color={textColor}>
+                    Jogos
+                  </Text>
+                  <Text fontWeight="bold" color={textColor}>
+                    48
+                  </Text>
+                </VStack>
+                <VStack align="start" spacing={0}>
+                  <Text fontSize="xs" color={textColor}>
+                    Gols
+                  </Text>
+                  <Text fontWeight="bold" color={textColor}>
+                    156
+                  </Text>
+                </VStack>
+              </HStack>
+              <Progress
+                value={75}
+                size="xs"
+                colorScheme="yellow"
+                width="100%"
+                borderRadius="full"
+              />
+            </VStack>
+          </HStack>
+        </Box>
+      </Flex>
+
+      <Divider borderColor={highlightColor} my={4} />
+
+      {/* Links Rápidos */}
+      <HStack spacing={4} justify="center">
+        <Tooltip label="Ver Agenda" hasArrow>
+          <Button
+            as={Link}
+            to="/schedule"
+            size="sm"
+            bg={highlightColor}
+            color={bgColor}
+            _hover={{ bg: textColor, color: bgColor }}
+            leftIcon={<Icon as={FaCalendarCheck} />}
+          >
+            Agenda
+          </Button>
+        </Tooltip>
+        <Tooltip label="Ver Competições" hasArrow>
+          <Button
+            as={Link}
+            to="/competitions"
+            size="sm"
+            bg={highlightColor}
+            color={bgColor}
+            _hover={{ bg: textColor, color: bgColor }}
+            leftIcon={<Icon as={FaTrophy} />}
+          >
+            Competições
+          </Button>
+        </Tooltip>
+      </HStack>
     </Box>
   );
 };
 
-export default InfoBar; 
+export default Sidebar;

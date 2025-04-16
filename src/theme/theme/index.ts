@@ -10,53 +10,31 @@ const theme = extendTheme({
   config,
   colors: {
     brand: {
-      50: "#f0fdf4",
-      100: "#dcfce7",
-      200: "#bbf7d0",
-      300: "#86efac",
-      400: "#4ade80",
-      500: "#22c55e", // Verde principal
-      600: "#16a34a",
-      700: "#15803d", // Verde mais escuro (similar ao seu primary)
-      800: "#166534",
-      900: "#14532d",
-      primary: "#1B5E20", // Mantido para compatibilidade
-      secondary: "#FFD700", // Dourado mantido
-    },
-    accent: {
-      50: "#f0f9ff",
-      100: "#e0f2fe",
-      200: "#bae6fd",
-      300: "#7dd3fc",
-      400: "#38bdf8",
-      500: "#0ea5e9", // Azul principal
-      600: "#0284c7",
-      700: "#0369a1",
-      800: "#075985",
-      900: "#0c4a6e",
-    },
-    yellow: {
-      50: "#fefce8",
-      100: "#fef9c3",
-      200: "#fef08a",
-      300: "#fde047",
-      400: "#facc15",
-      500: "#eab308", // Amarelo principal
-      600: "#ca8a04",
-      700: "#a16207",
-      800: "#854d0e",
-      900: "#713f12",
+      50: "#e3f2f9",
+      100: "#c5e4f3",
+      200: "#a2d4ec",
+      300: "#7ac1e4",
+      400: "#47a9da",
+      500: "#0088cc",
+      600: "#007ab8",
+      700: "#006ba1",
+      800: "#005885",
+      900: "#003f5e",
     },
   },
   fonts: {
-    heading: "Poppins, Inter, sans-serif", // Mais moderna
-    body: "Inter, Roboto, sans-serif",
+    heading: "Poppins, sans-serif",
+    body: "Poppins, sans-serif",
   },
   styles: {
     global: (props) => ({
       body: {
-        bg: mode("gray.50", "gray.900")(props), // Modo claro/escuro automático
+        bg: mode("gray.50", "gray.900")(props),
         color: mode("gray.800", "whiteAlpha.900")(props),
+        _dark: {
+          bg: "gray.900",
+          color: "gray.100",
+        },
         fontFeatureSettings: '"kern", "liga", "clig", "calt"',
         textRendering: "optimizeLegibility",
         WebkitFontSmoothing: "antialiased",

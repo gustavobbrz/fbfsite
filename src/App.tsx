@@ -7,13 +7,14 @@ import theme from "./theme/theme";
 import LoadingScreen from "./components/LoadingScreen";
 import ErrorBoundary from "./components/ErrorBoundary";
 
-function App() {
+const App = () => {
   return (
     <HelmetProvider>
       <ChakraProvider theme={theme}>
         <BrowserRouter>
           <ErrorBoundary>
             <Suspense fallback={<LoadingScreen />}>
+              {/* Main App Container */}
               <Box minH="100vh" bg="gray.50" _dark={{ bg: "gray.900" }}>
                 <AppRoutes />
               </Box>
@@ -23,6 +24,6 @@ function App() {
       </ChakraProvider>
     </HelmetProvider>
   );
-}
+};
 
 export default App;
