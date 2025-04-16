@@ -1,0 +1,106 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark; /* Forçar tema escuro */
+  
+  /* Cores do tema escuro */
+  --chakra-colors-chakra-body-text: rgba(255, 255, 255, 0.92);
+  --chakra-colors-chakra-body-bg: #1a1a1a;
+  --chakra-colors-chakra-border-color: #2d3748;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset e estilos base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  color: var(--chakra-colors-chakra-body-text);
+  background-color: var(--chakra-colors-chakra-body-bg);
+  font-family: var(--font-family);
+}
+
+/* Links */
+a {
+  font-weight: 500;
+  color: #4299e1; /* Azul do Chakra */
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #63b3ed; /* Azul mais claro */
+  text-decoration: underline;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+/* Botões - compatíveis com Chakra */
+button {
+  border-radius: 6px; /* Border radius do Chakra */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--chakra-colors-chakra-body-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+/* Remover tema light se não for necessário */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: dark; /* Manter sempre escuro */
+  }
+}
+
+/* Classes utilitárias */
+.full-width {
+  width: 100%;
+}
+
+.max-content-width {
+  max-width: 1200px;
+  margin: 0 auto;
+}

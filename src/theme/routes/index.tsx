@@ -1,7 +1,7 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import MainLayout from '../layouts/MainLayout';
-import Competitions from '../pages/Competitions';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import MainLayout from "../../components/layouts/MainLayout";
+import Competitions from "../../pages/Competitions";
 
 const AppRoutes = () => {
   return (
@@ -14,4 +14,4 @@ const AppRoutes = () => {
   );
 };
 
-export default AppRoutes; 
+export default AppRoutes;
